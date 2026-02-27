@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<title>PlantSecure | Home</title>
+<!-- Stylesheets -->
+<link href="../../static/main_index_assets/css/bootstrap.css" rel="stylesheet">
+<link href="../../static/main_index_assets/css/style.css" rel="stylesheet">
+<link href="../../static/main_index_assets/css/responsive.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="../../static/main_index_assets/images/favicon.png" type="image/x-icon">
+<link rel="icon" href="../../static/main_index_assets/images/favicon.png" type="image/x-icon">
+
+<!-- Responsive -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+<!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+</head>
+
+<body>
+
+<div class="page-wrapper">
+    <!-- Preloader -->
+    <div class="preloader"></div>
+    
+    <!-- Main Header-->
+    <header class="main-header">
+
+        <!-- Header Upper -->
+        <div class="header-upper">
+            <div class="auto-container">
+                <div class="outer-container clearfix">
+                    <div class="logo-box">
+                        <div class="logo"><a href="{{ url_for('main_home_page') }}"><img src="../../static/main_index_assets/images/PlantSecure-Logo.png" alt="" title="" style="width: 202px; height: 50px;"></a></div>
+                    </div>
+
+
+                    <div class="nav-outer clearfix">
+                        <!-- Main Menu -->
+                        <nav class="main-menu navbar-expand-md navbar-dark">
+                            <div class="navbar-header">
+                                <!-- Toggle Button -->      
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="icon  flaticon-menu-1"></span>
+                                </button>
+                            </div>
+                            
+                            <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                                <ul class="navigation clearfix">
+                                    <li class="current"><a href="/">Home</a></li> 
+                                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                                    <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                                </ul>
+                            </div>
+                        </nav><!-- Main Menu End-->
+                        <!-- Main Menu End-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Header Upper-->
+
+        <!-- Sticky Header -->
+        <div class="sticky-header">
+            <div class="auto-container clearfix">
+                <!--Logo-->
+                <div class="logo pull-left">
+                    <a href="/" title=""><img src="../../static/main_index_assets/images/PlantSecure-Logo.png" alt="" title="" style="width: 202px; height: 50px;"></a>
+                </div>
+                <!--Right Col-->
+                <div class="pull-right">
+                    <!-- Main Menu -->
+                    <nav class="main-menu">
+                        <div class="navbar-collapse show collapse clearfix">
+                            <ul class="navigation clearfix">
+                                <li class="current"><a href="/">Home</a></li> 
+                                <li><a href="{{ url_for('login') }}">Login</a></li>
+                                <li><a href="{{ url_for('signup') }}">Signup</a></li>
+                            </ul>
+                        </div>
+                    </nav><!-- Main Menu End-->
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--End Main Header -->
+
+
+    <!-- Bnner Section -->
+    <section class="banner-section">
+        <div class="banner-carousel owl-carousel owl-theme">
+            <div class="slide-item" style="background-image: url(../../static/main_index_assets/images/main-slider/1.jpg);">
+                <div class="auto-container">
+                    <div class="content-box">
+                        <h2>Instant Disease Detection</h2>
+                        <h4>Identify plant diseases with ML precision.</h4>
+                        <div class="link-box clearfix">
+                            <a href="{{ url_for('login') }}" class="theme-btn btn-style-one"><i class="flaticon-tablet"></i>Login or SignUp</a>
+                            <a href="#onboarding-section" class="link">How to get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-item" style="background-image: url(../../static/main_index_assets/images/main-slider/2.jpg);">
+                <div class="auto-container clearfix">
+                    <div class="content-box pull-right">
+                        <h2>Realtime Forecasting</h2>
+                        <h4>Track weather updates <br> to protect your crops.</h4>
+                        <div class="link-box clearfix">
+                            <a href="{{ url_for('login') }}" class="theme-btn btn-style-one"><i class="flaticon-tablet"></i>Login or SignUp</a>
+                            <a href="#onboarding-section" class="link">How to get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide-item" style="background-image: url(../../static/main_index_assets/images/main-slider/3.jpg);">
+                <div class="auto-container">
+                    <div class="content-box">
+                        <h2>Protect Your Crops</h2>
+                        <h4>Get actionable solutions <br> for crop health.</h4>
+                        <div class="link-box clearfix">
+                            <a href="{{ url_for('login') }}" class="theme-btn btn-style-one"><i class="flaticon-tablet"></i>Login or SignUp</a>
+                            <a href="#onboarding-section" class="link">How to get started</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Bnner Section -->
+
+
+
+    <!-- Process Section -->
+    <section class="process-section-two" id="onboarding-section">
+        <div class="auto-container">
+            <div class="sec-title style-two">
+                <div class="row clearfix">
+                    <div class="title-column col-lg-4 col-md-12 col-sm-12">
+                        <h2>Get <span> Started</span></h2>                
+                    </div>
+                    <div class="text-column col-lg-8 col-md-12 col-sm-12">
+                        <div class="text">Welcome to <b>Plantsecure</b>. Follow these simple steps below to get started.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Block Two -->
+            <div class="process-block-two">
+                <div class="inner-box">
+                    <div class="row clearfix">
+                        <div class="image-column col-lg-7 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image-box wow zoomIn">
+                                    <a href="../../static/main_index_assets/images/resource/process-1.jpg" class="lightbox-image" data-fancybox="images"><img src="../../static/main_index_assets/images/resource/process-1.jpg" alt=""></a>
+                                    <span class="count">1</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-column col-lg-5 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="icon-box"><span class="icon flaticon-consulting"></span></div>
+                                <h4>Login or signup</h4>
+                                <div class="text">Create an account or log in to start.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Block Two -->
+            <div class="process-block-two style-two">
+                <div class="inner-box">
+                    <div class="row clearfix">
+                        <div class="image-column col-lg-7 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image-box wow zoomIn">
+                                    <a href="../../static/main_index_assets/images/resource/process-2.jpg" class="lightbox-image" data-fancybox="images"><img src="../../static/main_index_assets/images/resource/process-2.jpg" alt="" style="width: 370px; height: 370px;"></a>
+                                    <span class="count">2</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-column col-lg-5 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="icon-box"><span class="icon flaticon-devices"></span></div>
+                                <h4><a href="service-single.html">Upload Image</a></h4>
+                                <div class="text">Upload a plant image for analysis.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Block Two -->
+            <div class="process-block-two">
+                <div class="inner-box">
+                    <div class="row clearfix">
+                        <div class="image-column col-lg-7 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image-box wow zoomIn">
+                                    <a href="../../static/main_index_assets/images/resource/process-3.jpg" class="lightbox-image" data-fancybox="images"><img src="../../static/main_index_assets/images/resource/process-3.jpg" alt="" style="width: 370px; height: 370px;"></a>
+                                    <span class="count">3</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-column col-lg-5 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="icon-box"><span class="icon flaticon-stats"></span></div>
+                                <h4><a href="service-single.html">Submit for results</a></h4>
+                                <div class="text">Submit to receive instant disease results.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Process Block Two -->
+            <div class="process-block-two style-two">
+                <div class="inner-box">
+                    <div class="row clearfix">
+                        <div class="image-column col-lg-7 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="image-box wow zoomIn">
+                                    <a href="../../static/main_index_assets/images/resource/process-4.jpg" class="lightbox-image" data-fancybox="images"><img src="../../static/main_index_assets/images/resource/process-4.jpg" alt="" style="width: 370; height: 370px;"></a>
+                                    <span class="count">4</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="content-column col-lg-5 col-md-12 col-sm-12">
+                            <div class="inner-column">
+                                <div class="icon-box"><span class="icon flaticon-weather"></span></div>
+                                <h4><a href="service-single.html">RealTime Weather Tracking</a></h4>
+                                <div class="text">Check real-time weather to protect your crops.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--End Process Section -->
+
+
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="auto-container">
+            <div class="sec-title style-two">
+                <div class="row clearfix">
+                    <div class="title-column col-lg-4 col-md-12 col-sm-12">
+                        <h2>Crops <span>Supported</span></h2>                
+                    </div>
+                    <div class="text-column col-lg-8 col-md-12 col-sm-12">
+                        <div class="text">
+                            Our system detects diseases in these local crops: <i>Maize, Potato, Soyabean, Tomato, Grape & Apple.</i><br>
+                            Other Supported Crops: <i>Cherry, Peach, Strawberry, Squash & Raspberry.</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row clearfix">
+
+                <!-- Service Block -->
+
+                <div class="product-block col-lg-6 col-md-12 col-sm-12 wow fadeIn">
+                    <div class="inner-box">
+                        <div class="image-box"><img src="../../static/main_index_assets/images/resource/product-1.png" alt=""></div>
+                        <div class="content-box">
+                            <span class="tag">NOTE:</span>
+                            <h3>Disease detection is limited to crops in our dataset.</h3>
+                            <h4>The system handles undetected leaves or non-existent images and will notify you for corrections.</h4><br><br>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-block-two col-lg-3 col-md-6 col-sm-12 wow fadeIn" data-wow-delay="1200ms">
+                    <div class="inner-box">
+                        <div class="image"><img src="../../static/main_index_assets/images/resource/service-1.jpg" alt=""></div>
+                        <div class="content-box">
+                            <div class="content">
+                                <h3>To <span> start,</span> <br>Click Here 👇</h3>
+                                <div class="icon-box"><a href="{{ url_for('login') }}"><span class="flaticon-leaf-1"></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!--End Services Section -->
+
+
+
+
+    <!--Main Footer-->
+    <footer class="main-footer">
+        <!--End Footer Top -->
+        <div class="auto-container">
+            <!-- Footer Top -->
+            <div class="footer-top clearfix">
+                <div class="top-left">
+                    <a href="javascript:void(0)" class="theme-btn"><i class="flaticon-plant"></i>&copy; 2024. PlantSecure | All rights reserved.</a>
+                </div>
+
+
+                <div class="top-right clearfix">
+                    <ul class="social-icon-two">
+                        <li><a href="javascript:void(0)"> M L - Powered <span class="fa fa-lightbulb-o"></span>.</a></li>
+                    </ul>
+                    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="flaticon-up-chevron"></span> Move to the Top</div>
+                </div>
+            </div>
+
+            <!--Widgets Section-->
+        </div>
+    </footer>
+    <!--End Main Footer-->
+</div>  
+<!--End pagewrapper-->
+
+<!--Scroll to top-->
+<script src="../../static/main_index_assets/js/jquery.js"></script> 
+<script src="../../static/main_index_assets/js/popper.min.js"></script>
+<script src="../../static/main_index_assets/js/bootstrap.min.js"></script>
+<script src="../../static/main_index_assets/js/jquery.fancybox.js"></script>
+<script src="../../static/main_index_assets/js/owl.js"></script>
+<script src="../../static/main_index_assets/js/wow.js"></script>
+<script src="../../static/main_index_assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="../../static/main_index_assets/js/isotope.js"></script>
+<script src="../../static/main_index_assets/js/appear.js"></script>
+<script src="../../static/main_index_assets/js/script.js"></script>
+<!--Google Map APi Key-->
+<script src="../../static/http://maps.google.com/maps/api/js?key=AIzaSyBKS14AnP3HCIVlUpPKtGp7CbYuMtcXE2o"></script>
+<script src="../../static/main_index_assets/js/map-script.js"></script>
+<!--End Google Map APi-->
+</body>
+
+</html>

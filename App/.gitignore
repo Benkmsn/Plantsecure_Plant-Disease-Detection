@@ -1,0 +1,84 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+venvScriptsactivate/
+.venv
+*.virtualenv
+
+# Byte-compiled / optimized files
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+.vscode-server/
+.pycharm/
+
+# Dependency Management
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Database
+*.db
+
+# Environment Variables
+.env
+.venv
+
+# Configuration Files
+config.py
+
+# Secret Keys and Credentials
+*.secret
+*.key
+
+# Note: Do NOT ignore static CSS/JS files needed for the app
+# Only ignore compiled/generated files if you use preprocessors
+
+# __init__.py files (only if not needed)
+# **/__init__.py
+
+# User-specific files
+*.swp
+*.swo
+*.swn
+*~
+*.bak
+
+# Logs and Temporary Files
+*.log
+*.tmp
+*.temp
+
+# IDE/Editor Backup Files
+*~
+*.bak
+# Machine Learning Model Files (too large for GitHub)
+*.pt
+*.pth
+*.h5
+*.pkl
+
+# Flask Session Files
+flask_session/
+
+# Uploaded Images
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Database Files
+instance/*.sqlite
+instance/*.db
+*.sqlite
+*.db
+
+# OS specific
+.DS_Store
+Thumbs.db

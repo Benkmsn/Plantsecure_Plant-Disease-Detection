@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+{{title}}
+{% endblock pagetitle %}
+{% block body %}
+
+<style>
+  .playButton {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #52764c;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.2s;
+  }
+
+  .playButton:hover {
+    transform: scale(1.1);
+    background-color: #6b8e23; /* Change to desired hover color */
+  }
+
+  .playButton:focus,
+  .playButton:active {
+    background-color: #6b8e23; /* Ensure the button maintains the hover color when clicked */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .playButton:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: rgba(91, 131, 84, 0.5);
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0;
+    animation: echo 1.5s infinite;
+  }
+
+  @keyframes echo {
+    0% {
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(1.5);
+      opacity: 0;
+    }
+  }
+</style>
+
+<div>
+  <div class="container">
+    <!-- For demo purpose -->
+    <div class="row mb-5 text-center text-white">
+      <div class="col-lg-7 mx-auto">
+        <h3 class="display-6 page-title"><b>{{title}}</b></h3>
+      </div>
+      <div class="col-lg-5 mx-auto">
+        <div class="p-3 bg-white shadow rounded-lg image-container">
+          <img src={{image_url}} alt="Plant Image">
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg content-container">
+          <h5><b>
+            {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or
+            pred==24 or pred==25 or pred==28 or pred==38 %}
+            Tips to Grow Healthy Plants :
+            {% else %}
+            Brief Description :
+            {% endif %}
+          </b></h5>
+          <button class="btn btn-primary playButton" data-content-id="desc">▶</button>
+          <p id="desc">{{desc}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg content-container">
+          <h5><b>
+            {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or
+            pred==24 or pred==25 or pred==28 or pred==38 %}
+            Benefits :
+            {% elif pred==4 %}
+            SOLUTION :
+            {% else %}
+            Prevent This Plant Disease By following the steps below :
+            {% endif %}
+          </b></h5>
+          <button class="btn btn-primary playButton" data-content-id="prevent">▶</button>
+          <p id="prevent">{{prevent}}</p>
+        </div>
+      </div>
+
+      {% if pred!=4 %}
+      <div class="col mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg content-container">
+          <center>
+            <h5><b>
+              {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or
+              pred==24 or pred==25 or pred==28 or pred==38 %}
+              Fertilizer :
+              {% else %}
+              Supplements :
+              {% endif %}
+            </b></h5>
+            <br>
+            <img src={{simage}} width="200" height="250" alt="Supplement Image">
+            <br>
+            <br>
+            <h6 id="sname">{{sname}}</h6>
+            <a target="_blank" href={{buy_link}}>
+              <button type="button" class="btn btn-success buy-button">Buy Product</button>
+            </a>
+          </center>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentAudio = null;
+  let currentButton = null;
+  let currentPosition = 0;
+
+  document.querySelectorAll('.playButton').forEach(button => {
+      button.addEventListener('click', function() {
+          const contentId = this.getAttribute('data-content-id');
+          const content = document.getElementById(contentId).innerText;
+          const caption = this.previousElementSibling.innerText;
+          const textToRead = caption + ". " + content;
+
+          if (currentAudio && !currentAudio.paused) {
+              currentAudio.pause();
+              currentPosition = currentAudio.currentTime;
+              this.innerText = '▶';
+              return;
+          }
+
+          if (currentAudio && currentAudio.paused && currentButton === this) {
+              currentAudio.currentTime = currentPosition;
+              currentAudio.play();
+              this.innerText = '⏸';
+              return;
+          }
+
+          fetch('/text_to_speech', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({ text: textToRead })
+          })
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.blob();
+          })
+          .then(blob => {
+              if (currentAudio) {
+                  currentAudio.pause();
+              }
+              currentAudio = new Audio(URL.createObjectURL(blob));
+              currentAudio.play();
+              this.innerText = '⏸';
+              currentButton = this;
+              currentAudio.onended = () => {
+                  this.innerText = '▶';
+                  currentPosition = 0;
+              };
+          })
+          .catch(error => console.error('Error:', error));
+      });
+  });
+</script>
+
+{% endblock body %}

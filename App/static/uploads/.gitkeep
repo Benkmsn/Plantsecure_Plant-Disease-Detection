@@ -1,0 +1,5 @@
+# This file ensures the uploads directory is tracked by Git
+# while keeping the actual uploaded files ignored
+
+# The uploads/ folder is needed for the application to store
+# user-uploaded plant leaf images for disease detection.

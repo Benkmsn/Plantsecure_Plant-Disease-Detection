@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none">
+    
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>PlantSecure | Admin Profile</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="../../static/admin_assets/img/favicon.png">
+		
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../../static/admin_assets/css/bootstrap.min.css">
+
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="../../static/admin_assets/plugins/fontawesome/css/fontawesome.min.css">
+    	<link rel="stylesheet" href="../../static/admin_assets/plugins/fontawesome/css/all.min.css">
+
+		<!-- Lineawesome CSS -->
+        <link rel="stylesheet" href="../../static/admin_assets/css/line-awesome.min.css">
+		<link rel="stylesheet" href="../../static/admin_assets/css/material.css">
+
+		<!-- Datatable CSS -->
+		<link rel="stylesheet" href="../../static/admin_assets/css/dataTables.bootstrap4.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="../../static/admin_assets/css/select2.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="../../static/admin_assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Tagsinput CSS -->
+		<link rel="stylesheet" href="../../static/admin_assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="../../static/admin_assets/css/style.css">
+		
+		 
+    </head>
+    <body>
+		<!-- Main Wrapper -->
+        <div class="main-wrapper">
+		
+			<!-- Header -->
+            <div class="header">
+			
+				<!-- Logo -->
+                <div class="header-left">
+                     <a href="{{ url_for('admin_dashboard') }}" class="logo">
+						<img src="../../static/admin_assets/img/logo.png" width="202" height="50" alt="Logo">
+					</a>
+                </div>
+				<!-- /Logo -->
+				
+				<a id="toggle_btn" href="javascript:void(0);">
+					<span class="bar-icon">
+						<span></span>
+						<span></span>
+						<span></span>
+					</span>
+				</a>
+				
+				<!-- Header Title -->
+                <div class="page-title-box">
+					<h3>Dashboard</h3>
+                </div>
+				<!-- /Header Title -->
+				
+				<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa-solid fa-bars"></i></a>
+				
+				<!-- Header Menu -->
+				<ul class="nav user-menu">
+				
+
+					<li class="nav-item dropdown has-arrow main-drop">
+						<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+							<span class="user-img"><img src="{{ url_for('static', filename='admin_assets/img/profiles/' + (admin.profile_image or 'user.jpg')) }}" alt="User Image">
+							<span class="status online"></span></span>
+							<span>{{ admin.username }}</span>
+						</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="{{ url_for('admin_profile') }}">My Profile</a>
+							<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+						</div>
+					</li>
+				</ul>
+				<!-- /Header Menu -->
+				
+				<!-- Mobile Menu -->
+				<div class="dropdown mobile-user-menu">
+					<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+					<div class="dropdown-menu dropdown-menu-right">
+						<a class="dropdown-item" href="{{ url_for('admin_profile') }}">My Profile</a>
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+					</div>
+				</div>
+				<!-- /Mobile Menu -->
+				
+            </div>
+			<!-- /Header -->
+			
+			<!-- Sidebar -->
+			<div class="sidebar" id="sidebar">
+				<div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+
+						<ul class="sidebar-vertical">
+							<li class="menu-title"> 
+								<span>Main</span>
+							</li>
+							<li>
+								<a href="{{ url_for('admin_dashboard') }}"><i class="la la-dashboard"></i> <span>Admin Dashboard</span></a>
+							</li>
+
+
+							<li> 
+								<a href="{{ url_for('admin_profile') }}"><i class="la la-user-plus"></i> <span>Profile</span></a>
+							</li>
+
+							<li> 
+								<a href="{{ url_for('logout') }}"><i class="la la-sign-out"></i> <span>Logout</span></a>
+							</li>
+
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">Profile</h3>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item"><a href="{{ url_for('admin_dashboard') }}">Dashboard</a></li>
+									<li class="breadcrumb-item active">Profile</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+
+					{% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-messages" id="flash-messages">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+					
+					<div class="card mb-0">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-12">
+									<div class="profile-view">
+										<div class="profile-img-wrap">
+											<div class="profile-img">
+												<a href="#"><img src="{{ url_for('static', filename='admin_assets/img/profiles/' + (admin.profile_image or 'user.jpg')) }}" alt="User Image"></a>
+											</div>
+										</div>
+
+										<div class="profile-basic">
+											<div class="row">
+												<div class="col-md-5">
+													<div class="profile-info-left">
+														<h3 class="user-name m-t-0 mb-0">{{ admin.username }}</h3> 
+														
+														<div class="staff-msg">
+															<a class="btn btn-custom" href="#" data-bs-toggle="modal" data-bs-target="#change_password_modal">Change Password</a>
+														</div>
+
+														<div class="staff-msg">
+															<a class="btn btn-custom" href="#" data-bs-toggle="modal" data-bs-target="#delete_user">Delete Account</a>
+														</div>
+													</div>
+												</div>
+												<div class="col-md-7">
+													<ul class="personal-info">
+														<li>
+															<div class="title">Full Name</div> 
+															<div class="text">{{ admin.fullname }}</div>   
+														</li>
+
+														<li>
+															<div class="title">Email:</div>
+															<div class="text"><a href="mailto:{{ admin.email }}">{{ admin.email }}</a></div>
+														</li>
+
+													</ul>
+												</div>
+											</div>
+										</div>
+										<div class="pro-edit">
+											<a data-bs-target="#profile_info" data-bs-toggle="modal" class="edit-icon" href="#">
+												<i class="fa-solid fa-pencil"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+                </div>
+				<!-- /Page Content -->
+				
+				<!-- Profile Modal -->
+				<div id="profile_info" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Profile Information</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form action="{{ url_for('admin_update_profile') }}" method="POST" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="profile-img-wrap edit-img">
+												<img class="inline-block" src="{{ url_for('static', filename='admin_assets/img/profiles/' + (admin.profile_image or 'user.jpg')) }}" alt="User Image">
+												<div class="fileupload btn">
+													<span class="btn-text">edit</span>
+													<input class="upload" type="file" name="profile_image">
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Full Name</label>
+														<input type="text" class="form-control" name="fullname" value="{{ admin.fullname }}">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Username</label>
+														<input type="text" class="form-control" name="username" value="{{ admin.username }}">
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Email</label>
+														<input type="email" class="form-control" name="email" value="{{ admin.email }}">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Update</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Profile Modal -->
+
+					<!-- Delete User Modal -->
+					<div class="modal custom-modal fade" id="delete_user" role="dialog">
+						<div class="modal-dialog modal-dialog-centered">
+							<div class="modal-content">
+								<div class="modal-body">
+									<div class="form-header">
+										<h3>Delete User</h3>
+										<p>Are you sure you want to delete your account?</p>
+									</div>
+									<div class="modal-btn delete-action">
+										<div class="row">
+											<div class="col-6">
+												<form action="{{ url_for('delete_admin_account') }}" method="POST">
+													<button type="submit" class="btn btn-primary continue-btn">Delete</button>
+												</form>
+											</div>
+											<div class="col-6">
+												<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Delete User Modal -->
+
+						<!-- Change Password Modal -->
+						<div id="change_password_modal" class="modal custom-modal fade" role="dialog">
+							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">Change Password</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<form action="{{ url_for('admin_change_password') }}" method="POST">
+											<div class="row">
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Current Password</label>
+														<input type="password" name="current_password" class="form-control" placeholder="Enter current password" required>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">New Password</label>
+														<input type="password" name="new_password" class="form-control" placeholder="Enter new password" required>
+													</div>
+												</div>
+												<div class="col-md-6">
+													<div class="input-block mb-3">
+														<label class="col-form-label">Confirm New Password</label>
+														<input type="password" name="confirm_new_password" class="form-control" placeholder="Confirm new password" required>
+													</div>
+												</div>
+											</div>
+											<div class="submit-section">
+												<button class="btn btn-primary submit-btn">Update</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>							<!-- /Change Password Modal -->
+				
+				
+            </div>
+			<!-- /Page Wrapper -->
+
+        </div>
+		<!-- /Main Wrapper -->
+
+
+		<!-- jQuery -->
+	   
+	   <script src="../../static/admin_assets/js/jquery-3.7.1.min.js"></script>
+
+		<!-- Bootstrap Core JS -->
+        <script src="../../static/admin_assets/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Slimscroll JS -->
+		<script src="../../static/admin_assets/js/jquery.slimscroll.min.js"></script>
+		
+		<!-- Select2 JS -->
+		<script src="../../static/admin_assets/js/select2.min.js"></script>
+		
+		<!-- Datetimepicker JS -->
+		<script src="../../static/admin_assets/js/moment.min.js"></script>
+		<script src="../../static/admin_assets/js/bootstrap-datetimepicker.min.js"></script>
+
+		<!-- Datatable JS -->
+		<script src="../../static/admin_assets/js/jquery.dataTables.min.js"></script>
+		<script src="../../static/admin_assets/js/dataTables.bootstrap4.min.js"></script>
+		
+		<!-- Tagsinput JS -->
+		<script src="../../static/admin_assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+		 <!-- Theme Settings JS -->
+		<script src="../../static/admin_assets/js/layout.js"></script>
+		<script src="../../static/admin_assets/js/theme-settings.js"></script>
+		<script src="../../static/admin_assets/js/greedynav.js"></script>
+		<!-- Custom JS -->
+		<script src="../../static/admin_assets/js/app.js"></script>
+		<script>
+					// Set a timeout to hide the flash messages after 5 seconds (5000 milliseconds)
+		setTimeout(function() {
+			var flashMessages = document.getElementById('flash-messages');
+			if (flashMessages) {
+				flashMessages.style.display = 'none';
+			}
+		}, 3000); // 3000 milliseconds = 3 seconds
+		</script>
+		
+    </body>
+	
+</html>

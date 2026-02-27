@@ -1,0 +1,246 @@
+/*********** BASE.HTML STYLING *****************/
+
+body {
+    background-color: white !important;
+    height: 100vh !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 15px !important;
+    overflow-x: hidden !important;
+}
+
+.bg {
+    background-image: url("images/background.jpeg") !important;
+    height: 100% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+.file-upload input[type='file'] {
+    display: none !important;
+}
+
+.navbar {
+    background-color: #eaf0ec !important;
+}
+
+.navbar-brand {
+    font-size: 20px !important;
+    font-weight: 600 !important;
+    color: #588157 !important;
+    margin-top: 10px !important;
+}
+
+/* Navbar brand image styling */
+.navbar-brand img {
+    /* width: 30px !important; */
+    margin-right: 10px !important;
+}
+
+.rounded-lg {
+    border-radius: 1rem !important;
+}
+
+.custom-file-label.rounded-pill {
+    border-radius: 50rem !important;
+}
+
+.custom-file-label.rounded-pill::after {
+    border-radius: 0 50rem 50rem 0 !important;
+}
+
+label {
+    background-color: rgb(2, 46, 15) !important;
+    color: white !important;
+    padding: 0.5rem !important;
+    font-family: sans-serif !important;
+    border-radius: 0.3rem !important;
+    cursor: pointer !important;
+    margin-top: 1rem !important;
+}
+
+#file-chosen {
+    margin-left: 0.3rem !important;
+    font-family: sans-serif !important;
+}
+
+
+.profile-icon {
+    width: 30px;
+    border-radius: 50%;
+}
+
+/* Get Started section styling *************   HOME.HTML */
+.get-started-heading {
+    padding-top: 10% !important;
+    font-weight: 400 !important;
+    color: black !important;
+}
+
+.get-started-lead {
+    font-weight: 500 !important;
+    color: black !important;
+    font-size: 17px !important;
+}
+
+/* Start button styling */
+.start-button {
+    background-image: linear-gradient(270deg, #5b8354, #a4b48c) !important;
+    padding: 1% 6% !important;
+    border-radius: 100px !important;
+    color: white !important;
+    font-family: sans-serif !important;
+    font-size: 20px !important;
+}
+
+.start-button:hover {
+    background-image: linear-gradient(270deg, #a4b48c, #7c9180) !important; /* Reverse gradient on hover */
+    color: #fff !important; /* Change text color to black on hover */
+}
+
+/* Image container styling */
+.image-container {
+    width: 85% !important;
+}
+
+/* Detect Disease heading styling *********** INDEX.HTML  **/
+.detect-disease-heading {
+    padding-top: 2% !important;
+    font-weight: 400 !important;
+    color: rgb(4, 54, 4) !important;
+}
+
+/* Why Detecting Plant Diseases section styling */
+.why-detect-section {
+    height: 100% !important;
+    margin-bottom: 5% !important;
+}
+
+/* Upload section styling */
+.upload-section {
+    height: 100% !important;
+}
+
+/* Custom file input styling */
+.custom-file-input {
+    padding-bottom: 20% !important;
+}
+
+/* Choose file label styling */
+.choose-file-label {
+    background-image: linear-gradient(300deg, #5b8354, #7c9180) !important;
+    color: white !important;
+}
+
+/* Page title styling ************ SUBMIT.HTML*/
+.page-title {
+    padding-top: 10% !important;
+    font-weight: 400 !important;
+    color: rgb(33, 32, 35) !important;
+}
+
+/* Image container styling */
+.image-container {
+    width: 50% !important;
+    margin-top: 5% !important;
+    margin-left: 25% !important;
+}
+
+.image-container img {
+    width: 100% !important;
+}
+
+/* Content container styling */
+.content-container {
+    height: 95% !important;
+}
+
+/* **************MARKET.HTML STYLING CODE**************** */
+.supplements-heading {
+    padding-top: 2% !important;
+    font-weight: 400 !important;
+    color: rgb(4, 54, 4) !important;
+}
+
+.supplements-lead {
+    font-weight: 500 !important;
+    color: black !important;
+}
+
+.item-card {
+    height: 100% !important;
+    width: 90% !important;
+}
+
+.healthy {
+    color: green !important;
+}
+
+.diseased {
+    color: red !important;
+}
+
+.supplement-image {
+    width: 100px !important;
+    height: 150px !important;
+}
+
+.buy-button {
+    background-image: linear-gradient(300deg, #5b8354, #7c9180) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    /* background-color: #05380b !important; */
+}
+
+.icon-color {
+    color: #25723e;
+}
+
+
+/* Add border-radius to the nav items */
+.navbar-nav .nav-item {
+    margin: 10px;
+    border-radius: 20px !important;
+}
+
+
+.navbar-nav .nav-link:hover {
+    border-radius: 20px !important;
+    background-color: #588157 !important; 
+    color: #fff !important; 
+    transition: background-color 0.3s, color 0.3s !important;
+}
+
+/* Style the active nav item */
+.navbar-nav .nav-item.active .nav-link {
+    /* border: 1px solid #2d6049 !important; */
+    /* color: #000 !important;  */
+    border-radius: 20px !important;
+}
+
+.footer-basic {
+    margin-top: 15% !important;
+    padding: 14px 0 !important;
+    background-color: #042908 !important;
+    color: #f1f3f5 !important;
+    position: relative;
+}
+
+/* Styles for tablets and larger devices */
+@media (max-width: 1024px) {
+    .footer-basic {
+        margin-top: 5% !important;
+        padding: 20px 0 !important;
+    }
+}
+
+/* Styles for mobile devices */
+@media (max-width: 768px) {
+    .footer-basic {
+        margin-top: 0 !important;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 14px 0 !important;
+    }
+}

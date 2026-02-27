@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block pagetitle %}
+{{title}}
+{% endblock pagetitle %}
+{% block body %}
+
+<div>
+  <div class="container">
+    <!-- For demo purpose -->
+    <div class="row mb-5 text-center text-white">
+      <div class="col-lg-7 mx-auto">
+        <h3 class="display-6 page-title"><b>{{title}}</b></h3>
+      </div>
+      <div class="col-lg-5 mx-auto">
+        <div class="p-3 bg-white shadow rounded-lg image-container">
+          <img src={{image_url}} alt="Plant Image">
+        </div>
+      </div>
+    </div>
+    <center>
+    </center>
+    <br>
+    <div class="row">
+      <div class="col mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg content-container">
+          <h5><b>
+            {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or
+            pred==24 or pred==25 or pred==28 or pred==38 %}
+            Tips to Grow Healthy Plants :
+            {% else %}
+            Brief Description :
+            {% endif %}
+          </b></h5>
+          <p id="content">{{desc}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg content-container">
+          <h5><b>
+            {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or
+            pred==24 or pred==25 or pred==28 or pred==38 %}
+            Benefits :
+            {% else %}
+            Prevent This Plant Disease By following the steps below :
+            {% endif %}
+          </b></h5>
+          <p>{{prevent}}</p>
+        </div>
+      </div>
+
+      {% if pred!=4 %}
+      <div class="col mx-auto">
+        <div class="p-5 bg-white shadow rounded-lg content-container">
+          <center>
+            <h5><b>
+              {% if pred==3 or pred==5 or pred==7 or pred==11 or pred==15 or pred==18 or pred==20 or pred==23 or
+              pred==24 or pred==25 or pred==28 or pred==38 %}
+              Fertilizer :
+              {% else %}
+              Supplements :
+              {% endif %}
+            </b></h5>
+            <br>
+            <img src={{simage}} width="200" height="250" alt="Supplement Image">
+            <br>
+            <br>
+            <h6 id="content">{{sname}}</h6>
+            <a target="_blank" href={{buy_link}}>
+              <button type="button" class="btn btn-success buy-button">Buy Product</button>
+            </a>
+          </center>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script>
+  function changeContent() {
+    var contentElement = document.getElementById('content');
+    contentElement.innerHTML = '{{hin}}'; 
+  }
+</script>
+{% endblock body %}

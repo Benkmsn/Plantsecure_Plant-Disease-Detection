@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PlantSecure | auth-signup</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Favicon icon -->
+    <link rel="icon" href="../../static/login_signup_assets/images/favicon.png" type="image/x-icon">
+    <!-- fontawesome icon -->
+    <link rel="stylesheet" href="../../static/login_signup_assets/fonts/fontawesome/css/fontawesome-all.min.css">
+    <!-- animation css -->
+    <link rel="stylesheet" href="../../static/login_signup_assets/plugins/animation/css/animate.min.css">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="../../static/login_signup_assets/css/style.css">
+
+</head>
+
+<body>
+    <div class="auth-wrapper">
+        <div class="auth-content">
+            <div class="auth-bg">
+                <span class="r"></span>
+                <span class="r s"></span>
+                <span class="r s"></span>
+                <span class="r"></span>
+            </div>
+            <div class="card">
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <img src="../../static/login_signup_assets/images/PlantSecure-Long-Coloured.png" alt="" style="width: 202px; height: 50px;">
+                    </div>
+                    <h3 class="mb-4">Sign up</h3>
+
+                    <!-- Flash Messages -->
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-messages" id="flash-messages">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% endwith %}
+                    <!-- /Flash Messages -->
+
+                    <form id="signup-form" method="POST" action="{{ url_for('signup_post') }}">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="fullname" placeholder="fullname" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+                        </div>
+                        <div class="input-group mb-4">
+                            <input type="password" class="form-control" id="confirm-password" name="confirm_password" placeholder="confirm-password" required>
+                        </div>
+                        <div id="password-error" class="text-danger mb-3" style="display: none;">Passwords do not match.</div>
+                        <div id="password-match" class="text-success mb-3" style="display: none;">Passwords match.</div>
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </form>
+                    <p class="mb-0 text-muted">Already have an account? <a href="{{ url_for('login') }}"> Log in</a></p>
+                    <p class="mb-0 text-muted">Return <a href="/">Home</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Required Js -->
+    <script src="../../static/login_signup_assets/js/vendor-all.min.js"></script>
+    <script src="../../static/login_signup_assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+        setTimeout(function() {
+            var flashMessages = document.getElementById('flash-messages');
+            if (flashMessages) {
+                flashMessages.style.display = 'none';
+            }
+        }, 5000); 
+
+        // Check if passwords match in real-time
+        document.getElementById('confirm-password').addEventListener('input', function() {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var passwordError = document.getElementById('password-error');
+            var passwordMatch = document.getElementById('password-match');
+
+            if (password !== confirmPassword) {
+                passwordError.style.display = 'block';
+                passwordMatch.style.display = 'none';
+            } else {
+                passwordError.style.display = 'none';
+                passwordMatch.style.display = 'block';
+            }
+        });
+
+        // Prevent form submission if passwords do not match
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var passwordError = document.getElementById('password-error');
+
+            if (password !== confirmPassword) {
+                event.preventDefault();
+                passwordError.style.display = 'block';
+            } else {
+                passwordError.style.display = 'none';
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark"  data-sidebar-size="lg" data-sidebar-image="none">
+    
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>PlantSecure | Admin Panel</title>
+	
+	<!-- Favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="../../static/admin_assets/img/favicon.png">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="../../static/admin_assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Lineawesome CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/css/line-awesome.min.css">
+	<link rel="stylesheet" href="../../static/admin_assets/css/material.css">
+
+	<!-- Datatable CSS -->
+	<!-- <link rel="stylesheet" href="../../static/admin_assets/css/dataTables.bootstrap4.min.css"> -->
+	
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/css/select2.min.css">
+	
+	<!-- Datetimepicker CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/css/bootstrap-datetimepicker.min.css">
+	
+	<!-- Tagsinput CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css">
+	
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="../../static/admin_assets/css/style.css">
+	
+	 
+</head>
+<body>
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+	
+		<!-- Header -->
+		<div class="header">
+		
+			<!-- Logo -->
+			<div class="header-left">
+				 <a href="admin-dashboard.html" class="logo">
+					<img src="../../static/admin_assets/img/logo.png" width="202" height="50" alt="Logo">
+				</a>
+			</div>
+			<!-- /Logo -->
+			
+			<a id="toggle_btn" href="javascript:void(0);">
+				<span class="bar-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</a>
+			
+			<!-- Header Title -->
+			<div class="page-title-box">
+				<h3>Dashboard</h3>
+			</div>
+			<!-- /Header Title -->
+			
+			<a id="mobile_btn" class="mobile_btn" href="#sidebar"><i class="fa-solid fa-bars"></i></a>
+			
+			<!-- Header Menu -->
+			<ul class="nav user-menu">
+			
+
+				<li class="nav-item dropdown has-arrow main-drop">
+					<a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+						<span class="user-img"><img src="{{ url_for('static', filename='admin_assets/img/profiles/' + (admin.profile_image or 'user.jpg')) }}" alt="User Image">
+						<span class="status online"></span></span>
+						<span>{{ admin_username }}</span>
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ url_for('admin_profile') }}">My Profile</a>
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+					</div>
+				</li>
+			</ul>
+			<!-- /Header Menu -->
+			
+			<!-- Mobile Menu -->
+			<div class="dropdown mobile-user-menu">
+				<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+				<div class="dropdown-menu dropdown-menu-right">
+					<a class="dropdown-item" href="{{ url_for('admin_profile') }}">My Profile</a>
+					<a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a>
+				</div>
+			</div>
+			<!-- /Mobile Menu -->
+			
+		</div>
+		<!-- /Header -->
+			
+			<!-- Sidebar -->
+			<div class="sidebar" id="sidebar">
+				<div class="sidebar-inner slimscroll">
+					<div id="sidebar-menu" class="sidebar-menu">
+
+						<ul class="sidebar-vertical">
+							<li class="menu-title"> 
+								<span>Main</span>
+							</li>
+							<li>
+								<a href="{{ url_for('admin_dashboard') }}"><i class="la la-dashboard"></i> <span>Admin Dashboard</span></a>
+							</li>
+
+
+							<li> 
+								<a href="{{ url_for('admin_profile') }}"><i class="la la-user-plus"></i> <span>Profile</span></a>
+							</li>
+
+							<li> 
+								<a href="{{ url_for('logout') }}"><i class="la la-sign-out"></i> <span>Logout</span></a>
+							</li>
+
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+			
+			<!-- /Sidebar -->
+			
+			<!-- Page Wrapper -->
+            <div class="page-wrapper">
+			
+				<!-- Page Content -->
+                <div class="content container-fluid">
+				
+					<!-- Page Header -->
+					<div class="page-header">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="page-title">{{ admin_username }}</h3>
+								<p>ROLE: Admin</p>
+								<ul class="breadcrumb">
+									<li class="breadcrumb-item active">Dashboard</li>
+								</ul>
+							</div>
+							
+							<div class="col-auto float-end ms-auto">
+								<a href="#" class="btn add-btn" data-bs-toggle="modal" data-bs-target="#add_user"><i class="fa-solid fa-plus"></i> Add User</a>
+							</div>
+						</div>
+					</div>
+					<!-- /Page Header -->
+
+					{% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="flash-messages" id="flash-messages">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }}">{{ message }}</div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+				
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+						<div class="card dash-widget">
+							<div class="card-body">
+								<span class="dash-widget-icon"><i class="fa-regular fa-gem"></i></span>
+								<div class="dash-widget-info">
+									<h3>{{ total_admins }}</h3>
+									<span>Admin(s)</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+						<div class="card dash-widget">
+							<div class="card-body">
+								<span class="dash-widget-icon"><i class="fa-solid fa-user"></i></span>
+								<div class="dash-widget-info">
+									<h3>{{ total_regular_users }}</h3>
+									<span>Total Users</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- System Performance -->
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+						<div class="card dash-widget">
+							<div class="card-body">
+								<span class="dash-widget-icon"><i class="fa-solid fa-microchip"></i></span>
+								<div class="dash-widget-info">
+									<h3>{{ cpu_usage }}%</h3>
+									<span>CPU Usage</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+						<div class="card dash-widget">
+							<div class="card-body">
+								<span class="dash-widget-icon"><i class="fa-solid fa-memory"></i></span>
+								<div class="dash-widget-info">
+									<h3>{{ memory_info.percent }}%</h3>
+									<span>Memory Usage</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+						<div class="card dash-widget">
+							<div class="card-body">
+								<span class="dash-widget-icon"><i class="fa-solid fa-hdd"></i></span>
+								<div class="dash-widget-info">
+									<h3>{{ disk_usage.percent }}%</h3>
+									<span>Disk Usage</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+                        <div class="card dash-widget">
+                            <div class="card-body">
+                                <span class="dash-widget-icon"><i class="fa-solid fa-virus"></i></span>
+                                <div class="dash-widget-info">
+                                    <h3>{{ total_predictions }}</h3>
+                                    <span>Total Predictions</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+
+				<!-- New Widgets for Disease Prediction Statistics -->
+                <div class="row">
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+						<div class="card">
+							<div class="card-header">
+								<h4>Recent Predictions</h4>
+								<form action="{{ url_for('clear_history') }}" method="post" style="display:inline;">
+									<button type="submit" class="btn btn-danger btn-sm float-right">Clear History</button>
+								</form>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Disease Name</th>
+												<th>Timestamp</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for prediction in recent_predictions %}
+											<tr>
+												<td>{{ prediction.disease_name }}</td>
+												<td>{{ prediction.timestamp }}</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-lg-6 col-xl-6">
+						<div class="card">
+							<div class="card-header">
+								<h4>Most Common Diseases</h4>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>Disease Name</th>
+												<th>Count</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for disease in common_diseases %}
+											<tr>
+												<td>{{ disease.disease_name }}</td>
+												<td>{{ disease.count }}</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+                </div>
+
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item active">Users</li>
+					</ul>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<table class="table table-striped custom-table datatable">
+									<thead>
+										<tr>
+											<th>Name</th>
+											<th>Email</th>
+											<th class="text-end">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for user in users %}
+										<tr>
+											<td>
+												<h2 class="table-avatar">
+													<a href="profile.html" class="avatar">
+														<img src="{{ url_for('static', filename='user_dash_assets/img/profiles/' + (user.profile_image or 'user.jpg')) }}" alt="User Image">
+													</a>
+													<a href="profile.html">{{ user.fullname }} <span>{{ user.user_type }}</span></a>
+												</h2>
+											</td>
+											<td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+											<td class="text-end">
+												<div class="dropdown dropdown-action">
+													<a href="#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="material-icons">more_vert</i></a>
+													<div class="dropdown-menu dropdown-menu-right">
+														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit_user" data-user-id="{{ user.id }}" data-user-fullname="{{ user.fullname }}" data-user-username="{{ user.username }}" 
+														data-user-email="{{ user.email }}"> <i class="fa-solid fa-pencil m-r-5"></i> Edit</a>
+														
+														<a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#delete_user" data-user-id="{{ user.id }}">
+															<i class="fa-regular fa-trash-can m-r-5"></i> Delete
+														</a>
+													</div>
+												</div>
+											</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
+									<!-- Add User Modal -->
+				<div id="add_user" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Add User</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<!-- Add User Form -->
+								<form action="/admin/add_user" method="POST">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Full Name <span class="text-danger">*</span></label>
+												<input class="form-control" type="text" name="fullname" required>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Username <span class="text-danger">*</span></label>
+												<input class="form-control" type="text" name="username" required>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Email <span class="text-danger">*</span></label>
+												<input class="form-control" type="email" name="email" required>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Password <span class="text-danger">*</span></label>
+												<input class="form-control" type="password" name="password" id="password" required>
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Confirm Password <span class="text-danger">*</span></label>
+												<input class="form-control" type="password" name="confirm_password" id="confirm_password" required>
+											</div>
+										</div>
+										<div class="col-sm-12">
+											<div id="password-match-status"></div>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn" type="submit">Submit</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Add User Modal -->
+				
+				<!-- Edit User Modal -->
+				<div id="edit_user" class="modal custom-modal fade" role="dialog">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Edit User</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<form id="edit_user_form" method="POST">
+									<div class="row">
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Full Name <span class="text-danger"></span></label>
+												<input class="form-control" name="fullname" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Username <span class="text-danger"></span></label>
+												<input class="form-control" name="username" type="text">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Email <span class="text-danger"></span></label>
+												<input class="form-control" name="email" type="email">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">New Password <span class="text-danger"></span></label>
+												<input class="form-control" name="new_password" type="password">
+											</div>
+										</div>
+										<div class="col-sm-6">
+											<div class="input-block mb-3">
+												<label class="col-form-label">Confirm New Password <span class="text-danger"></span></label>
+												<input class="form-control" name="confirm_new_password" type="password" id="confirm_new_password">
+											</div>
+											<div id="password_match_status"></div>
+										</div>
+									</div>
+									<div class="submit-section">
+										<button class="btn btn-primary submit-btn">Save</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>								
+				<!-- /Edit User Modal -->
+				
+				<!-- Delete User Modal -->
+				<div class="modal custom-modal fade" id="delete_user" role="dialog">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-body">
+								<div class="form-header">
+									<h3>Delete User</h3>
+									<p>Are you sure you want to delete?</p>
+								</div>
+								<div class="modal-btn delete-action">
+									<div class="row">
+										<div class="col-6">
+											<form id="delete_user_form" method="POST">
+												<button type="submit" class="btn btn-primary continue-btn">Delete</button>
+											</form>
+										</div>
+										<div class="col-6">
+											<a href="javascript:void(0);" data-bs-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Delete User Modal -->
+
+				</div>
+				<!-- /Page Content -->
+
+            </div>
+			<!-- /Page Wrapper -->
+   
+			
+        </div>
+		<!-- /Main Wrapper -->
+		
+
+	
+
+	<!-- jQuery -->
+
+	
+	<script src="../../static/admin_assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="../../static/admin_assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Slimscroll JS -->
+	<script src="../../static/admin_assets/js/jquery.slimscroll.min.js"></script>
+	
+	<!-- Select2 JS -->
+	<script src="../../static/admin_assets/js/select2.min.js"></script>
+	
+	<!-- Datetimepicker JS -->
+	<script src="../../static/admin_assets/js/moment.min.js"></script>
+	<script src="../../static/admin_assets/js/bootstrap-datetimepicker.min.js"></script>
+
+	<!-- Datatable JS -->
+	<!-- <script src="../../static/admin_assets/js/jquery.dataTables.min.js"></script>
+	<script src="../../static/admin_assets/js/dataTables.bootstrap4.min.js"></script> -->
+	
+	<!-- Tagsinput JS -->
+	<script src="../../static/admin_assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+
+	 <!-- Theme Settings JS -->
+	<script src="../../static/admin_assets/js/layout.js"></script>
+	<script src="../../static/admin_assets/js/theme-settings.js"></script>
+	<script src="../../static/admin_assets/js/greedynav.js"></script>
+	<!-- Custom JS -->
+	<script src="../../static/admin_assets/js/app.js"></script>
+
+	<script>
+		// Set a timeout to hide the flash messages after 5 seconds (5000 milliseconds)
+		setTimeout(function() {
+			var flashMessages = document.getElementById('flash-messages');
+			if (flashMessages) {
+				flashMessages.style.display = 'none';
+			}
+		}, 3000); // 3000 milliseconds = 3 seconds
+        
+		// Check if passwords match in real-time when adding user
+		document.addEventListener('DOMContentLoaded', function() {
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirm_password');
+        const passwordMatchStatus = document.getElementById('password-match-status');
+
+        function checkPasswordMatch() {
+            if (password.value === confirmPassword.value) {
+                passwordMatchStatus.textContent = 'New passwords match';
+                passwordMatchStatus.style.color = 'green';
+            } else {
+                passwordMatchStatus.textContent = 'New passwords do not match';
+                passwordMatchStatus.style.color = 'red';
+            }
+        }
+
+        password.addEventListener('input', checkPasswordMatch);
+        confirmPassword.addEventListener('input', checkPasswordMatch);
+    });
+    
+	//populate edit user modal with user data from database
+	document.addEventListener('DOMContentLoaded', function () {
+        const editUserModal = document.getElementById('edit_user');
+        editUserModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // Button that triggered the modal
+            const userId = button.getAttribute('data-user-id');
+            const userFullname = button.getAttribute('data-user-fullname');
+            const userUsername = button.getAttribute('data-user-username');
+            const userEmail = button.getAttribute('data-user-email');
+
+            const form = document.getElementById('edit_user_form');
+            form.action = `/admin/edit_user/${userId}`;
+            form.fullname.value = userFullname;
+            form.username.value = userUsername;
+            form.email.value = userEmail;
+        });
+    });
+
+	//Check password match in real-time for edit user modal
+	document.addEventListener('DOMContentLoaded', function () {
+        const newPasswordInput = document.querySelector('input[name="new_password"]');
+        const confirmNewPasswordInput = document.querySelector('input[name="confirm_new_password"]');
+        const passwordMatchStatus = document.getElementById('password_match_status');
+
+        function checkPasswordMatch() {
+            const newPassword = newPasswordInput.value;
+            const confirmNewPassword = confirmNewPasswordInput.value;
+
+            if (newPassword && confirmNewPassword) {
+                if (newPassword === confirmNewPassword) {
+                    passwordMatchStatus.textContent = 'Passwords match';
+                    passwordMatchStatus.style.color = 'green';
+                } else {
+                    passwordMatchStatus.textContent = 'Passwords do not match';
+                    passwordMatchStatus.style.color = 'red';
+                }
+            } else {
+                passwordMatchStatus.textContent = '';
+            }
+        }
+
+        newPasswordInput.addEventListener('input', checkPasswordMatch);
+        confirmNewPasswordInput.addEventListener('input', checkPasswordMatch);
+    });
+
+	//Delete user modal action
+	document.addEventListener('DOMContentLoaded', function () {
+        const deleteUserModal = document.getElementById('delete_user');
+        deleteUserModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // Button that triggered the modal
+            const userId = button.getAttribute('data-user-id');
+
+            const form = document.getElementById('delete_user_form');
+            form.action = `/admin/delete_user/${userId}`;
+        });
+    });
+
+	</script>
+
+</body>
+
+</html>

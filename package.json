@@ -1,0 +1,24 @@
+{
+  "name": "plantsecure",
+  "version": "1.0.0",
+  "description": "AI-powered plant disease detection system using deep learning",
+  "main": "App/app.py",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Benkmsn/Plantsecure_Plant-Disease-Detection.git"
+  },
+  "keywords": [
+    "plant-disease-detection",
+    "deep-learning",
+    "cnn",
+    "pytorch",
+    "flask",
+    "agriculture",
+    "machine-learning",
+    "computer-vision",
+    "image-classification"
+  ],
+  "author": "Benjamin Mensah",
+  "license": "MIT",
+  "homepage": "https://github.com/Benkmsn/Plantsecure_Plant-Disease-Detection#readme"
+}
