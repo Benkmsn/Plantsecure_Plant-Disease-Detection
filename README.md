@@ -27,11 +27,8 @@
 - [Model Information](#-model-information)
 - [Project Structure](#-project-structure)
 - [API Endpoints](#-api-endpoints)
-- [Screenshots](#-screenshots)
 - [Future Enhancements](#-future-enhancements)
 - [Contributing](#-contributing)
-- [License](#-license)
-- [Contact](#-contact)
 
 ---
 
@@ -191,7 +188,7 @@ PlantSecure provides an accessible, AI-powered solution that enables instant dis
 4. **Download the trained model**
    
    The model file is large and not included in the repository. Download it from:
-   - [Google Drive Link](https://drive.google.com/drive/folders/1ewJWAiduGuld_9oGSrTuLumg9y62qS6A?usp=share_link)
+   - [Google Drive Link]( https://drive.google.com/file/d/1IDCMmc2OF570yBZGd3Dpw_3uN4danTxH/view?usp=sharing)
    - Save `plant_disease_model_1_latest.pt` in the `App/` directory
 
 5. **Set up environment variables**
@@ -417,36 +414,15 @@ PlantSecure/
 
 ---
 
-## 📸 Screenshots
-
-> **Note**: Add screenshots of your application here to showcase the UI/UX
-
-```markdown
-### Landing Page
-![Landing Page](screenshots/landing.png)
-
-### Disease Detection
-![Detection Page](screenshots/detection.png)
-
-### Results Page
-![Results](screenshots/results.png)
-
-### Admin Dashboard
-![Admin Panel](screenshots/admin.png)
-
-### Weather App
-![Weather](screenshots/weather.png)
-```
 
 ---
 
-## 🔮 Future Enhancements
+## 🔮 Possible Future Enhancements
 
 - [ ] **Mobile Application**: Develop native iOS and Android apps
 - [ ] **Improved Model**: Train on larger datasets for higher accuracy
 - [ ] **Real-Time Detection**: Implement video stream analysis
 - [ ] **Multi-Language Support**: Internationalization for global users
-- [ ] **Offline Mode**: Enable disease detection without internet
 - [ ] **Community Forum**: Allow farmers to share experiences
 - [ ] **Expert Consultation**: Connect users with agricultural experts
 - [ ] **Crop Health Monitoring**: Track plant health over time
@@ -464,50 +440,14 @@ Contributions are welcome! Here's how you can help:
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-### Development Guidelines
-- Follow PEP 8 style guide for Python code
-- Write meaningful commit messages
-- Add comments for complex logic
-- Update documentation for new features
-- Test thoroughly before submitting PR
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Contact
-
-**Benjamin Koomson** - Lead Developer
-
-- GitHub: [@Benkmsn](https://github.com/Benkmsn)
-- LinkedIn: [Benjamin Koomson](https://www.linkedin.com/in/benjamin-koomson)
-- Email: benkoomson07@gmail.com
-- Project Team: Asaph Nartey, Albert Amoako Kyeremateng
-
-**Project Link**: [https://github.com/Benkmsn/Plantsecure_Plant-Disease-Detection](https://github.com/Benkmsn/Plantsecure_Plant-Disease-Detection)
-
 ---
 
 ## 🙏 Acknowledgments
 
 - **Dataset**: [PlantVillage Dataset](https://data.mendeley.com/datasets/tywbtsjrjv/1)
 - **Inspiration**: The need for accessible agricultural disease diagnosis
-- **Mentors**: [Your supervisor/professor names]
-- **Institution**: [Your University Name]
 - **APIs**: ElevenLabs, OpenWeatherMap
 - **Community**: PyTorch and Flask communities
 
 ---
 
-<div align="center">
-
-### ⭐ Star this repository if you find it helpful!
-
-Made with ❤️ by Benjamin Mensah | Final Year Project 2026
-
-</div>

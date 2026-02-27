@@ -273,4 +273,3 @@ def health_check():
 - Use spot instances for non-critical workloads
 - Implement caching to reduce API calls
 
-For more help, consult platform-specific documentation!
